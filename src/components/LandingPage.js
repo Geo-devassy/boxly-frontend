@@ -23,58 +23,61 @@ function LandingPage() {
 
   // ================= LOGIN FUNCTION =================
   const handleLogin = async (e) => {
-    if (e) e.preventDefault();
+  if (e) e.preventDefault();
 
-    if (!username || !password) {
-      setError("Please enter username and password");
-      return;
+  if (!username || !password) {
+    setError("Please enter username and password");
+    return;
+  }
+
+  try {
+    setLoading(true);
+    setError("");
+
+    const API_URL = process.env.REACT_APP_API_URL;
+
+    console.log("API URL:", API_URL); // DEBUG
+
+    const response = await axios.post(
+      `${API_URL}/users/login`,
+      { username, password }
+    );
+
+    // ✅ FIXED HERE
+    localStorage.setItem("user", JSON.stringify(response.data));
+    localStorage.setItem("role", response.data.role);
+
+    setUsername("");
+    setPassword("");
+    setShowLogin(false);
+
+    // Redirect
+    if (response.data.role === "admin") {
+      navigate("/admin");
+    } else if (response.data.role === "staff") {
+      navigate("/staff");
+    } else if (response.data.role === "supplier") {
+      navigate("/supplier");
     }
 
-    try {
-      setLoading(true);
-      setError("");
+  } catch (err) {
+    console.log("ERROR:", err);
 
-      const res = await axios.post(
-        "http://localhost:5000/api/users/login",
-        { username, password }
-      );
-
-      // Save user data
-      localStorage.setItem("user", JSON.stringify(res.data));
-      localStorage.setItem("role", res.data.role);
-
-      // Clear fields
-      setUsername("");
-      setPassword("");
-      setShowLogin(false);
-
-      // Redirect based on role
-      if (res.data.role === "admin") {
-        navigate("/admin");
-      } else if (res.data.role === "staff") {
-        navigate("/staff");
-      } else if (res.data.role === "supplier") {
-        navigate("/supplier");
-      }
-
-    } catch (err) {
-      if (err.response) {
-        if (err.response.status === 401) {
-          setError("Invalid username or password");
-        } else if (err.response.status === 403) {
-          setError(
-            "Account not verified. Please verify OTP in Admin → UserReg."
-          );
-        } else {
-          setError(err.response.data?.message || "Login failed");
-        }
+    if (err.response) {
+      if (err.response.status === 401) {
+        setError("Invalid username or password");
+      } else if (err.response.status === 403) {
+        setError("Account not verified.");
       } else {
-        setError("Server not reachable");
+        setError(err.response.data?.message || "Login failed");
       }
-    } finally {
-      setLoading(false);
+    } else {
+      setError("Server not reachable");
     }
-  };
+  } finally {
+    setLoading(false);
+  }
+};
 
   return (
     <div
