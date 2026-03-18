@@ -23,9 +23,9 @@ function Login() {
       setError("");
 
       const response = await axios.post(
-        "http://localhost:5000/api/users/login",
-        { username, password }
-      );
+  `${process.env.REACT_APP_API_URL}/users/login`,
+  { username, password }
+);
 
       // Save user data
       localStorage.setItem("user", JSON.stringify(response.data));
