@@ -1,0 +1,152 @@
+.orders-container {
+  padding: 30px;
+  background: #f4f6f9;
+  min-height: 100vh;
+}
+
+.page-title {
+  margin-bottom: 25px;
+  font-weight: 600;
+}
+
+/* ===== FORM ===== */
+.form-card {
+  background: white;
+  padding: 20px;
+  border-radius: 12px;
+  box-shadow: 0 5px 20px rgba(0,0,0,0.05);
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+  gap: 15px;
+  margin-bottom: 30px;
+}
+
+.form-card input {
+  padding: 10px;
+  border-radius: 8px;
+  border: 1px solid #ddd;
+  outline: none;
+  transition: 0.2s;
+}
+
+.form-card input:focus {
+  border-color: #4f46e5;
+  box-shadow: 0 0 0 2px rgba(79,70,229,0.1);
+}
+
+.primary-btn {
+  background: #4f46e5;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  padding: 10px;
+  transition: 0.2s;
+}
+
+.primary-btn:hover {
+  background: #4338ca;
+}
+
+/* ===== TABLE ===== */
+.table-card {
+  background: white;
+  padding: 20px;
+  border-radius: 12px;
+  box-shadow: 0 5px 20px rgba(0,0,0,0.05);
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+thead {
+  background: #f9fafb;
+}
+
+th, td {
+  padding: 12px;
+  text-align: left;
+}
+
+tbody tr:hover {
+  background: #f4f6f9;
+}
+
+/* ===== STATUS BADGES ===== */
+.status {
+  padding: 5px 12px;
+  border-radius: 20px;
+  font-size: 12px;
+  font-weight: 500;
+}
+
+.status.pending {
+  background: #fef3c7;
+  color: #92400e;
+}
+
+.status.shipped {
+  background: #dbeafe;
+  color: #1e40af;
+}
+
+.status.delivered {
+  background: #dcfce7;
+  color: #166534;
+}
+
+/* ===== SELECT ===== */
+.status-select {
+  padding: 6px;
+  border-radius: 6px;
+  border: 1px solid #ddd;
+  outline: none;
+}
+
+/* ===== DELETE BUTTON ===== */
+.delete-btn {
+  background: #fee2e2;
+  color: #b91c1c;
+  border: none;
+  padding: 6px 12px;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+.delete-btn:hover {
+  background: #fecaca;
+}
+
+.search-box{
+  width: 250px;
+  padding: 8px;
+  margin-bottom: 15px;
+  border-radius: 6px;
+  border:1px solid #ccc;
+}
+
+/* STATUS BADGES */
+
+.status{
+  padding:4px 10px;
+  border-radius:12px;
+  font-size:12px;
+  font-weight:600;
+}
+
+.status.pending{
+  background:#fff3cd;
+  color:#856404;
+}
+
+.status.shipped{
+  background:#d1ecf1;
+  color:#0c5460;
+}
+
+.status.delivered{
+  background:#d4edda;
+  color:#155724;
+}

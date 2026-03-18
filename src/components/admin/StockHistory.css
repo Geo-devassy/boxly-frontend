@@ -1,0 +1,87 @@
+.history-container {
+  padding: 30px;
+  background: #f4f6f9;
+  min-height: 100vh;
+}
+
+.page-title {
+  margin-bottom: 5px;
+  font-weight: 600;
+}
+
+.subtitle {
+  color: #666;
+  margin-bottom: 20px;
+}
+
+/* ===== FILTER BAR ===== */
+.filter-bar {
+  display: flex;
+  gap: 15px;
+  margin-bottom: 25px;
+}
+
+.filter-bar select,
+.filter-bar input {
+  padding: 10px;
+  border-radius: 8px;
+  border: 1px solid #ddd;
+  outline: none;
+  transition: 0.2s;
+}
+
+.filter-bar select:focus,
+.filter-bar input:focus {
+  border-color: #4f46e5;
+  box-shadow: 0 0 0 2px rgba(79,70,229,0.1);
+}
+
+/* ===== TABLE CARD ===== */
+.table-card {
+  background: white;
+  padding: 20px;
+  border-radius: 12px;
+  box-shadow: 0 5px 20px rgba(0,0,0,0.05);
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+thead {
+  background: #f9fafb;
+}
+
+th, td {
+  padding: 12px;
+  text-align: left;
+}
+
+tbody tr:hover {
+  background: #f4f6f9;
+}
+
+.empty {
+  padding: 20px;
+  text-align: center;
+  color: #999;
+}
+
+/* ===== BADGES ===== */
+.badge {
+  padding: 5px 12px;
+  border-radius: 20px;
+  font-size: 12px;
+  font-weight: 500;
+}
+
+.badge.inward {
+  background: #dcfce7;
+  color: #166534;
+}
+
+.badge.outward {
+  background: #fee2e2;
+  color: #b91c1c;
+}

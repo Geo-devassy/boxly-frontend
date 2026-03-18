@@ -1,0 +1,71 @@
+.lowstock-container {
+  padding: 30px;
+  background: #f4f6f9;
+  min-height: 100vh;
+}
+
+.page-title {
+  margin-bottom: 5px;
+  font-weight: 600;
+}
+
+.subtitle {
+  color: #666;
+  margin-bottom: 20px;
+}
+
+/* ===== SUMMARY ALERT ===== */
+.alert-summary {
+  background: #fee2e2;
+  color: #b91c1c;
+  padding: 15px;
+  border-radius: 10px;
+  margin-bottom: 20px;
+  font-weight: 500;
+}
+
+/* ===== SUCCESS BOX ===== */
+.success-box {
+  background: #dcfce7;
+  color: #166534;
+  padding: 15px;
+  border-radius: 10px;
+  margin-top: 20px;
+  font-weight: 500;
+}
+
+/* ===== TABLE CARD ===== */
+.table-card {
+  background: white;
+  padding: 20px;
+  border-radius: 12px;
+  box-shadow: 0 5px 20px rgba(0,0,0,0.05);
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+thead {
+  background: #f9fafb;
+}
+
+th, td {
+  padding: 12px;
+  text-align: left;
+}
+
+tbody tr:hover {
+  background: #f4f6f9;
+}
+
+/* ===== LOW BADGE ===== */
+.low-badge {
+  background: #fee2e2;
+  color: #b91c1c;
+  padding: 5px 12px;
+  border-radius: 20px;
+  font-size: 12px;
+  font-weight: 500;
+}

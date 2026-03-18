@@ -1,0 +1,253 @@
+/* ===== RESET ===== */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Segoe UI", sans-serif;
+}
+
+html, body, #root {
+  height: 100%;
+  width: 100%;
+  background: #f4f6f9;
+}
+
+/* ===== LAYOUT ===== */
+.admin-layout {
+  display: flex;
+  height: 100vh;
+}
+
+/* ===== SIDEBAR ===== */
+.admin-sidebar {
+  width: 250px;
+  background: #ffffff;
+  border-right: 1px solid #e5e7eb;
+  padding: 25px 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  animation: slideIn 0.6s ease;
+}
+
+.logo {
+  color: #3b82f6;
+  font-weight: 600;
+}
+
+.sub {
+  font-size: 13px;
+  color: #6b7280;
+  margin-bottom: 30px;
+}
+
+.menu {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.menu a {
+  text-decoration: none;
+  padding: 10px 15px;
+  border-radius: 8px;
+  color: #374151;
+  transition: all 0.3s ease;
+}
+
+.menu a:hover {
+  background: #f3f4f6;
+  transform: translateX(5px);
+}
+
+.menu .active {
+  background: #3b82f6;
+  color: white;
+}
+
+.logout {
+  padding: 10px;
+  border: 1px solid #ef4444;
+  background: transparent;
+  color: #ef4444;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: 0.3s ease;
+}
+
+.logout:hover {
+  background: #ef4444;
+  color: white;
+}
+
+/* ===== MAIN ===== */
+.admin-main {
+  flex: 1;
+  padding: 30px;
+  overflow-y: auto;
+  animation: fadeIn 0.6s ease;
+}
+
+/* ===== TOPBAR ===== */
+.admin-topbar {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 30px;
+}
+
+.admin-topbar input {
+  width: 300px;
+  padding: 10px 15px;
+  border-radius: 20px;
+  border: 1px solid #e5e7eb;
+  background: white;
+  transition: 0.3s;
+}
+
+.admin-topbar input:focus {
+  outline: none;
+  border-color: #3b82f6;
+  box-shadow: 0 0 8px rgba(59,130,246,0.2);
+}
+
+.top-actions {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+
+.user-badge {
+  width: 35px;
+  height: 35px;
+  background: #3b82f6;
+  color: white;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* ===== CARDS ===== */
+.card-row {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+  margin-bottom: 30px;
+}
+
+.dashboard-card {
+  background: white;
+  padding: 20px;
+  border-radius: 12px;
+  border: 1px solid #e5e7eb;
+  transition: all 0.3s ease;
+  cursor: pointer;
+}
+
+.dashboard-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 20px rgba(0,0,0,0.08);
+}
+
+.dashboard-card h4 {
+  color: #6b7280;
+  margin-bottom: 10px;
+}
+
+/* ===== ANALYTICS ===== */
+.analytics-row {
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  gap: 20px;
+  margin-bottom: 30px;
+}
+
+.analytics-card {
+  background: white;
+  padding: 20px;
+  border-radius: 12px;
+  border: 1px solid #e5e7eb;
+  transition: 0.3s ease;
+}
+
+.analytics-card:hover {
+  box-shadow: 0 8px 20px rgba(0,0,0,0.08);
+}
+
+.large {
+  height: 300px;
+}
+
+.chart-placeholder {
+  height: 200px;
+  background: linear-gradient(90deg,#6366f1,#06b6d4);
+  border-radius: 10px;
+  animation: shimmer 3s infinite linear;
+}
+
+/* ===== CIRCLE ===== */
+.circle-chart {
+  width: 150px;
+  height: 150px;
+  margin: 30px auto;
+  border-radius: 50%;
+  background: conic-gradient(#3b82f6 70%, #e5e7eb 0%);
+  transition: transform 0.3s ease;
+}
+
+.circle-chart:hover {
+  transform: rotate(15deg);
+}
+
+/* ===== TABLE ===== */
+.table-card {
+  background: white;
+  padding: 20px;
+  border-radius: 12px;
+  border: 1px solid #e5e7eb;
+  transition: 0.3s ease;
+}
+
+table {
+  width: 100%;
+  margin-top: 15px;
+  border-collapse: collapse;
+}
+
+th, td {
+  padding: 12px 0;
+  text-align: left;
+}
+
+tbody tr {
+  transition: 0.2s ease;
+}
+
+tbody tr:hover {
+  background: #f9fafb;
+}
+
+.success {
+  color: green;
+}
+
+.pending {
+  color: orange;
+}
+
+/* ===== ANIMATIONS ===== */
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes slideIn {
+  from { transform: translateX(-20px); opacity: 0; }
+  to { transform: translateX(0); opacity: 1; }
+}
+
+@keyframes shimmer {
+  0% { background-position: -500px 0; }
+  100% { background-position: 500px 0; }
+}
+
