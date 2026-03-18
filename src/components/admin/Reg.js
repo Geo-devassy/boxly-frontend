@@ -1,5 +1,5 @@
 import { useState } from "react";
-import axios from "axios";
+import API from "../../api";
 import "./Reg.css";
 
 function Reg() {
@@ -31,8 +31,8 @@ function Reg() {
       setError("");
       setMessage("");
 
-      await axios.post(
-        "http://localhost:5000/api/users/add",
+      await API.post(
+        "/api/users/add",
         form
       );
 
@@ -56,8 +56,8 @@ function Reg() {
       setError("");
       setMessage("");
 
-      await axios.post(
-        "http://localhost:5000/api/users/verify-otp",
+      await API.post(
+        "/api/users/verify-otp",
         { email: form.email, otp }
       );
 
@@ -84,8 +84,8 @@ function Reg() {
       setError("");
       setMessage("");
 
-      await axios.post(
-        "http://localhost:5000/api/users/add",
+      await API.post(
+        "/api/users/add",
         form
       );
 

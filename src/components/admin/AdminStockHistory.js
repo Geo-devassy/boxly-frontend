@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { Navigate } from "react-router-dom";
-import axios from "axios";
+import API from "../../api";
 import "./StockHistory.css";
 
 function StockHistory() {
@@ -14,7 +14,7 @@ function StockHistory() {
     if (role !== "admin") return;
 
     axios
-      .get("http://localhost:5000/api/stockhistory")
+      .get("/api/stockhistory")
       .then((res) => setHistory(res.data))
       .catch((err) => console.error(err));
   }, [role]);
@@ -100,9 +100,8 @@ function StockHistory() {
                   <tr key={h._id}>
                     <td>
                       <span
-                        className={`badge ${
-                          h.type?.toLowerCase()
-                        }`}
+                        className={`badge ${h.type?.toLowerCase()
+                          }`}
                       >
                         {h.type}
                       </span>

@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { Navigate } from "react-router-dom";
-import axios from "axios";
+import API from "../../api";
 import "./LowStock.css";
 
 function LowStockAlerts() {
@@ -15,8 +15,8 @@ function LowStockAlerts() {
 
     const fetchProducts = async () => {
       try {
-        const res = await axios.get("http://localhost:5000/api/products");
-        const reqRes = await axios.get("http://localhost:5000/api/supplier/stock-requests");
+        const res = await API.get("/api/products");
+        const reqRes = await API.get("/api/supplier/stock-requests");
 
         const formatted = res.data.map((p) => ({
           ...p,
@@ -47,14 +47,14 @@ function LowStockAlerts() {
   const handleRequestStock = async (product) => {
     setRequestingId(product._id);
     try {
-      await axios.post("http://localhost:5000/api/supplier/stock-requests", {
+      await API.post("/api/supplier/stock-requests", {
         productName: product.name,
         quantity: product.minStock * 2 || 50,
         requestedBy: "Admin",
       });
 
       // Refresh pending requests
-      const reqRes = await axios.get("http://localhost:5000/api/supplier/stock-requests");
+      const reqRes = await API.get("/api/supplier/stock-requests");
       setPendingRequests(reqRes.data.filter(r => r.status === "Pending"));
       alert("Stock request submitted successfully.");
     } catch (err) {

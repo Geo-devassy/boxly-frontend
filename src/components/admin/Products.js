@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import axios from "axios";
+import API from "../../api";
 import "./Products.css";
 
 function Products() {
@@ -20,7 +20,7 @@ function Products() {
 
   const fetchProducts = async () => {
     try {
-      const res = await axios.get("http://localhost:5000/api/products");
+      const res = await API.get("/api/products");
       setProducts(res.data);
     } catch (err) {
       console.error(err);
@@ -41,14 +41,14 @@ function Products() {
       };
 
       if (editingId) {
-        await axios.put(
-          `http://localhost:5000/api/products/${editingId}`,
+        await API.put(
+          `/api/products/${editingId}`,
           payload
         );
         setEditingId(null);
       } else {
-        await axios.post(
-          "http://localhost:5000/api/products",
+        await API.post(
+          "/api/products",
           payload
         );
       }
@@ -73,7 +73,7 @@ function Products() {
   };
 
   const handleDelete = async (id) => {
-    await axios.delete(`http://localhost:5000/api/products/${id}`);
+    await API.delete(`/api/products/${id}`);
     fetchProducts();
   };
 

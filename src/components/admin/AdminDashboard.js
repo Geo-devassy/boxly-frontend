@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import axios from "axios";
+import API from "../../api";
 import {
   LineChart,
   Line,
@@ -25,8 +25,8 @@ function AdminDashboard() {
 
   const fetchData = async () => {
     try {
-      const productRes = await axios.get("http://localhost:5000/api/products");
-      const orderRes = await axios.get("http://localhost:5000/api/orders");
+      const productRes = await API.get("/api/products");
+      const orderRes = await API.get("/api/orders");
 
       setProducts(productRes.data);
       setOrders(orderRes.data);

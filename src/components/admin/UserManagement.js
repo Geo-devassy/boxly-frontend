@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { Navigate } from "react-router-dom";
-import axios from "axios";
+import API from "../../api";
 import "./UserManagement.css";
 
 function UserManagement() {
@@ -27,7 +27,7 @@ function UserManagement() {
   const fetchUsers = async () => {
     try {
       setLoading(true);
-      const res = await axios.get("http://localhost:5000/api/users");
+      const res = await API.get("/api/users");
       setUsers(res.data);
     } catch (err) {
       alert("Failed to load users");
@@ -48,15 +48,15 @@ function UserManagement() {
 
     try {
       if (editingId) {
-        await axios.put(
-          `http://localhost:5000/api/users/${editingId}`,
+        await API.put(
+          `/api/users/${editingId}`,
           form
         );
         setEditingId(null);
         fetchUsers();
       } else {
-        await axios.post(
-          "http://localhost:5000/api/users/add",
+        await API.post(
+          "/api/users/add",
           {
             ...form,
             password: "123456",
@@ -78,8 +78,8 @@ function UserManagement() {
 
   const handleVerifyOtp = async () => {
     try {
-      await axios.post(
-        "http://localhost:5000/api/users/verify-otp",
+      await API.post(
+        "/api/users/verify-otp",
         {
           email: form.email,
           otp,
@@ -104,7 +104,7 @@ function UserManagement() {
 
   const deleteUser = async (id) => {
     if (!window.confirm("Delete this user?")) return;
-    await axios.delete(`http://localhost:5000/api/users/${id}`);
+    await API.delete(`/api/users/${id}`);
     fetchUsers();
   };
 

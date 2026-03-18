@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import axios from "axios";
+import API from "../../api";
 import jsPDF from "jspdf";
 import autoTable from "jspdf-autotable";
 
@@ -13,7 +13,7 @@ function AdminReport() {
 
   const fetchProducts = async () => {
     try {
-      const res = await axios.get("http://localhost:5000/api/products");
+      const res = await API.get("/api/products");
       setProducts(res.data);
     } catch (error) {
       console.log(error);

@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import axios from "axios";
+import API from "../../api";
 import "./Orders.css";
 
 function Orders() {
@@ -21,7 +21,7 @@ function Orders() {
 
   const fetchOrders = async () => {
     try {
-      const res = await axios.get("http://localhost:5000/api/orders");
+      const res = await API.get("/api/orders");
       setOrders(res.data);
     } catch (err) {
       console.error("Error fetching orders:", err);
@@ -32,7 +32,7 @@ function Orders() {
     if (!form.orderId || !form.customer) return;
 
     try {
-      await axios.post("http://localhost:5000/api/orders", {
+      await API.post("/api/orders", {
         ...form,
         status: "Pending"
       });
@@ -53,12 +53,12 @@ function Orders() {
   };
 
   const updateStatus = async (id, status) => {
-    await axios.put(`http://localhost:5000/api/orders/${id}`, { status });
+    await API.put(`/api/orders/${id}`, { status });
     fetchOrders();
   };
 
   const deleteOrder = async (id) => {
-    await axios.delete(`http://localhost:5000/api/orders/${id}`);
+    await API.delete(`/api/orders/${id}`);
     fetchOrders();
   };
 
