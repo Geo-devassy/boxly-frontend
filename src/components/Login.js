@@ -10,6 +10,11 @@ function Login() {
 
   const navigate = useNavigate();
 
+  // ✅ Base URL (with fallback for safety)
+  const API_URL =
+    process.env.REACT_APP_API_URL ||
+    "https://boxly-backend-xr97.onrender.com/api";
+
   const handleLogin = async (e) => {
     e.preventDefault();
 
@@ -23,16 +28,16 @@ function Login() {
       setError("");
 
       const response = await axios.post(
-  `${process.env.REACT_APP_API_URL}/users/login`,
-  { username, password }
-);
+        `${API_URL}/users/login`,
+        { username, password }
+      );
 
-      // Save user data
+      // ✅ Save user data
       localStorage.setItem("user", JSON.stringify(response.data));
       localStorage.setItem("role", response.data.role);
       localStorage.setItem("username", response.data.username);
 
-      // Redirect based on role
+      // ✅ Redirect based on role
       if (response.data.role === "admin") {
         navigate("/admin");
       } else if (response.data.role === "supplier") {
@@ -42,8 +47,9 @@ function Login() {
       }
 
     } catch (err) {
+      console.error(err);
+
       if (err.response) {
-        // Backend sent error
         if (err.response.status === 401) {
           setError("Invalid username or password");
         } else if (err.response.status === 403) {
@@ -52,8 +58,9 @@ function Login() {
           setError(err.response.data?.message || "Login failed");
         }
       } else {
-        setError("Server not reachable");
+        setError("Server not reachable (check backend or URL)");
       }
+
     } finally {
       setLoading(false);
     }
