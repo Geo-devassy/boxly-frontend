@@ -14,15 +14,26 @@ function StockHistory() {
     if (role !== "admin") return;
 
     API.get("/api/stockhistory")
-      .then((res) => setHistory(res.data))
-      .catch((err) => console.error(err));
+      .then((res) => {
+        if (Array.isArray(res.data)) {
+          setHistory(res.data);
+        } else {
+          console.error("Expected array from API, got:", res.data);
+          setHistory([]);
+        }
+      })
+      .catch((err) => {
+        console.error(err);
+        setHistory([]);
+      });
   }, [role]);
 
   if (role !== "admin") {
     return <Navigate to="/" replace />;
   }
 
-  const filteredHistory = history.filter((h) => {
+  const safeHistory = Array.isArray(history) ? history : [];
+  const filteredHistory = safeHistory.filter((h) => {
     const matchesType =
       filterType === "ALL" ||
       (h.type || "").toLowerCase() === filterType.toLowerCase();
