@@ -34,7 +34,9 @@ function LandingPage() {
     setLoading(true);
     setError("");
 
-    const API_URL = process.env.REACT_APP_API_URL;
+    const API_URL =
+      process.env.REACT_APP_API_URL ||
+      "https://boxly-backend-xr97.onrender.com/api";
 
     console.log("API URL:", API_URL); // DEBUG
 
