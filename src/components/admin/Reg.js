@@ -85,8 +85,8 @@ function Reg() {
       setMessage("");
 
       await API.post(
-        "/api/users/add",
-        form
+        "/api/users/resend-otp",
+        { email: form.email }
       );
 
       setMessage("New OTP sent.");
