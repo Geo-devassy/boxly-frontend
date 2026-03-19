@@ -108,6 +108,16 @@ function UserManagement() {
     fetchUsers();
   };
 
+  const handleVerifyManually = async (id) => {
+    if (!window.confirm("Verify this user manually?")) return;
+    try {
+      await API.put(`/api/users/${id}`, { isVerified: true });
+      fetchUsers();
+    } catch (err) {
+      alert("Failed to verify user");
+    }
+  };
+
   if (role !== "admin") {
     return <Navigate to="/" replace />;
   }
@@ -206,6 +216,15 @@ function UserManagement() {
                       >
                         Edit
                       </button>
+                      {!u.isVerified && (
+                        <button
+                          className="verify-btn"
+                          onClick={() => handleVerifyManually(u._id)}
+                          style={{ background: "#10b981", color: "white", marginLeft: "5px" }}
+                        >
+                          Verify
+                        </button>
+                      )}
                       <button
                         className="delete-btn"
                         onClick={() => deleteUser(u._id)}
