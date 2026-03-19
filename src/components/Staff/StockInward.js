@@ -1,4 +1,4 @@
-import axios from "axios";
+import API from "../../api";
 import { useEffect, useState } from "react";
 import { Navigate, useNavigate } from "react-router-dom";
 
@@ -21,7 +21,7 @@ function StockInward() {
 
   const fetchProducts = async () => {
     try {
-      const res = await axios.get("http://localhost:5000/api/products");
+      const res = await API.get("/api/products");
       setProducts(res.data);
     } catch (err) {
       console.error("Error fetching products:", err);
@@ -41,12 +41,12 @@ function StockInward() {
     }
 
     try {
-      await axios.put(
-        `http://localhost:5000/api/products/inward/${selectedProductId}`,
+      await API.put(
+        `/api/products/inward/${selectedProductId}`,
         { quantity: Number(quantity) }
       );
 
-      await axios.post("http://localhost:5000/api/stockhistory", {
+      await API.post("/api/stockhistory", {
         type: "Inward",
         productId: selectedProductId,
         quantity: Number(quantity),

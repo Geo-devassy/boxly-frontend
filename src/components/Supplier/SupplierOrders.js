@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { Navigate } from "react-router-dom";
-import axios from "axios";
+import API from "../../api";
 
 function SupplierOrders() {
   const role = localStorage.getItem("role");
@@ -24,7 +24,7 @@ function SupplierOrders() {
 
   const fetchOrders = async () => {
     try {
-      const res = await axios.get("http://localhost:5000/api/supplier/orders");
+      const res = await API.get("/api/supplier/orders");
       setOrders(res.data);
     } catch (err) {
       console.error("Error fetching orders:", err);
@@ -36,8 +36,8 @@ function SupplierOrders() {
   // ✅ Manual Delivered Button
   const markDelivered = async (id) => {
     try {
-      await axios.put(
-        `http://localhost:5000/api/supplier/orders/${id}`,
+      await API.put(
+        `/api/supplier/orders/${id}`,
         { status: "Delivered" }
       );
 

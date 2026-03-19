@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { Navigate } from "react-router-dom";
-import axios from "axios";
+import API from "../../api";
 
 function StaffStockHistory() {
   const [history, setHistory] = useState([]);
@@ -12,8 +12,8 @@ function StaffStockHistory() {
 
     const fetchHistory = async () => {
       try {
-        const res = await axios.get(
-          "http://localhost:5000/api/stockhistory"
+        const res = await API.get(
+          "/api/stockhistory"
         );
 
         const myHistory = res.data.filter(

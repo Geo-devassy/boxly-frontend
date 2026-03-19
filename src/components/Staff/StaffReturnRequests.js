@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import axios from "axios";
+import API from "../../api";
 
 // Assume we have styles and UI components. Since this is an existing app, I'll use common UI patterns seen in similar apps.
 // Alternatively I could use bootstrap if it's there, but I'll write clean custom UI.
@@ -25,7 +25,7 @@ const StaffReturnRequests = () => {
 
     const fetchProducts = async () => {
         try {
-            const res = await axios.get("http://localhost:5000/api/products");
+            const res = await API.get("/api/products");
             setProducts(res.data);
         } catch (err) {
             console.error("Error fetching products", err);
@@ -34,7 +34,7 @@ const StaffReturnRequests = () => {
 
     const fetchReturnRequests = async () => {
         try {
-            const res = await axios.get("http://localhost:5000/api/returnrequests");
+            const res = await API.get("/api/returnrequests");
             // Filter only requests by this staff if necessary, or show all.
             // Assuming staff want to see all or their own. We'll filter for visual simplicity.
             const myReturns = res.data.filter((req) => req.requestedBy === staffName);
@@ -54,7 +54,7 @@ const StaffReturnRequests = () => {
         setMessage("");
 
         try {
-            await axios.post("http://localhost:5000/api/returnrequests", {
+            await API.post("/api/returnrequests", {
                 ...formData,
                 requestedBy: staffName,
             });

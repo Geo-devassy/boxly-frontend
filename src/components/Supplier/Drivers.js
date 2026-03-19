@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import axios from "axios";
+import API from "../../api";
 
 function Drivers() {
   const [drivers, setDrivers] = useState([]);
@@ -14,18 +14,18 @@ function Drivers() {
   }, []);
 
   const fetchDrivers = async () => {
-    const res = await axios.get("http://localhost:5000/api/drivers");
+    const res = await API.get("/api/drivers");
     setDrivers(res.data);
   };
 
   const handleAdd = async () => {
-    await axios.post("http://localhost:5000/api/drivers/add", form);
+    await API.post("/api/drivers/add", form);
     setForm({ name: "", phone: "", vehicleNumber: "" });
     fetchDrivers();
   };
 
   const handleDelete = async (id) => {
-    await axios.delete(`http://localhost:5000/api/drivers/${id}`);
+    await API.delete(`/api/drivers/${id}`);
     fetchDrivers();
   };
 

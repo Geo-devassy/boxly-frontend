@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { Navigate } from "react-router-dom";
-import axios from "axios";
+import API from "../../api";
 
 function SupplierStockRequests() {
   const role = localStorage.getItem("role");
@@ -23,8 +23,8 @@ function SupplierStockRequests() {
 
   const fetchRequests = async () => {
     try {
-      const res = await axios.get(
-        "http://localhost:5000/api/supplier/stock-requests"
+      const res = await API.get(
+        "/api/supplier/stock-requests"
       );
       setRequests(res.data);
     } catch (err) {
@@ -36,8 +36,8 @@ function SupplierStockRequests() {
 
   const handleRequest = async (id, status) => {
     try {
-      await axios.put(
-        `http://localhost:5000/api/supplier/stock-requests/${id}`,
+      await API.put(
+        `/api/supplier/stock-requests/${id}`,
         { status }
       );
 

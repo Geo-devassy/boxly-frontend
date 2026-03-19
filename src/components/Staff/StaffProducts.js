@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { Navigate } from "react-router-dom";
-import axios from "axios";
+import API from "../../api";
 
 function StaffProducts() {
   const role = localStorage.getItem("role");
@@ -19,7 +19,7 @@ function StaffProducts() {
 
   const fetchProducts = async () => {
     try {
-      const res = await axios.get("http://localhost:5000/api/products");
+      const res = await API.get("/api/products");
       setProducts(res.data);
       setLoading(false);
     } catch (err) {

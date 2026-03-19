@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import axios from "axios";
+import API from "../../api";
 
 function StaffSummary() {
   const [stats, setStats] = useState({
@@ -27,21 +27,21 @@ function StaffSummary() {
   const fetchSummary = async () => {
     try {
       // Get products
-      const productsRes = await axios.get(
-        "http://localhost:5000/api/products"
+      const productsRes = await API.get(
+        "/api/products"
       );
 
       const products = productsRes.data;
 
       // Get history
-      const historyRes = await axios.get(
-        "http://localhost:5000/api/stockhistory"
+      const historyRes = await API.get(
+        "/api/stockhistory"
       );
       const history = historyRes.data;
 
       // Get returns
-      const returnsRes = await axios.get(
-        "http://localhost:5000/api/returnrequests"
+      const returnsRes = await API.get(
+        "/api/returnrequests"
       );
       const returns = returnsRes.data;
 

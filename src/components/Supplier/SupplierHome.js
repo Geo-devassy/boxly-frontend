@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import axios from "axios";
+import API from "../../api";
 
 function SupplierHome() {
   const [stats, setStats] = useState({
@@ -21,7 +21,7 @@ function SupplierHome() {
 
   const fetchAssignments = async () => {
     try {
-      const res = await axios.get("http://localhost:5000/api/assignments");
+      const res = await API.get("/api/assignments");
       // Count assignments that are assigned or in_transit, filtering for those related to the supplier where possible
       const pendingDeliveriesCount = res.data.filter(
         (a) => a.status === "assigned" || a.status === "in_transit"

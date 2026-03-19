@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { Navigate } from "react-router-dom";
-import axios from "axios";
+import API from "../../api";
 
 function Assignments() {
   const role = localStorage.getItem("role");
@@ -24,9 +24,9 @@ function Assignments() {
   const fetchAllData = async () => {
     try {
       const [aRes, dRes, oRes] = await Promise.all([
-        axios.get("http://localhost:5000/api/assignments"),
-        axios.get("http://localhost:5000/api/drivers"),
-        axios.get("http://localhost:5000/api/supplier/orders"),
+        API.get("/api/assignments"),
+        API.get("/api/drivers"),
+        API.get("/api/supplier/orders"),
       ]);
 
       const assignmentsData = aRes.data;
@@ -59,8 +59,8 @@ function Assignments() {
     }
 
     try {
-      await axios.post(
-        "http://localhost:5000/api/assignments",
+      await API.post(
+        "/api/assignments",
         form
       );
 
@@ -74,8 +74,8 @@ function Assignments() {
 
   const updateStatus = async (id, status) => {
     try {
-      await axios.put(
-        `http://localhost:5000/api/assignments/${id}`,
+      await API.put(
+        `/api/assignments/${id}`,
         { status }
       );
       fetchAllData();

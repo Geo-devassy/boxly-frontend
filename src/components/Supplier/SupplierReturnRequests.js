@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import axios from "axios";
+import API from "../../api";
 
 const SupplierReturnRequests = () => {
     const [returnRequests, setReturnRequests] = useState([]);
@@ -13,7 +13,7 @@ const SupplierReturnRequests = () => {
     const fetchReturnRequests = async () => {
         try {
             // Fetching all return requests
-            const res = await axios.get("http://localhost:5000/api/returnrequests");
+            const res = await API.get("/api/returnrequests");
             setReturnRequests(res.data);
         } catch (err) {
             console.error("Error fetching return requests", err);
@@ -24,7 +24,7 @@ const SupplierReturnRequests = () => {
         setLoading(true);
         setMessage("");
         try {
-            await axios.put(`http://localhost:5000/api/returnrequests/${id}/${action}`);
+            await API.put(`/api/returnrequests/${id}/${action}`);
             setMessage(`Request successfully ${action}ed!`);
             fetchReturnRequests(); // Refresh the list
         } catch (err) {
