@@ -13,8 +13,7 @@ function StockHistory() {
   useEffect(() => {
     if (role !== "admin") return;
 
-    axios
-      .get("/api/stockhistory")
+    API.get("/api/stockhistory")
       .then((res) => setHistory(res.data))
       .catch((err) => console.error(err));
   }, [role]);
